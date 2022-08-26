@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.app-container {
+    max-width: 700px;
+    height: fit-content;
+    margin: 20px auto;
+    border: 1px solid grey;
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+/* ------------------------------HEADER COMPONENT STYLES-------------------------- */
+
+.header-container {
+    background-color: rgb(67, 121,157);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+}
+.header-container h1{
+    font-size: 2.5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 0.2rem ;
+}
+.header-container p {
+    font-size: 1.2rem;
+    font-weight: bold
+}
+
+/* -----------------------------------CARD COMPONENT STYLES--------------------- */
+
+.card {
+    background-color: rgb(238, 238, 238);
+    margin: 1.5rem 4rem;
+    padding: 1rem 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 1s ease;
+}
+
+.card:hover {
+    background-color: rgb(212, 212, 212);
+}
+
+/* ------------------------------------------BUTTON COMPONENT STYLES------------------------- */
+
+.btn {
+    margin: 0.7rem 0 0;
+    padding: 0.3rem 0.8rem;
+    border: none;
+    outline: none;
+    color: white;
+    display: block;
+    font-size: 1rem;
+    cursor: pointer;
+    
+}
+a {
+    display: block;
+    width: fit-content;
+}
+
+
+
+.create-event {
+    margin: 2rem auto;
+    width: fit-content;
+    
+}
+
+
+/* -----------------------------------------EVENT-ITEM COMPONENT STYLES------------------------ */
+
+.item-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.item-contents h3{
+    color: rgb(57, 151, 214)
+}
+
+.item-contents p {
+    font-family: cursive;
+    font-size: 1rem;
+    margin: 0.3rem 0;
+}
+
+.item-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.item-icons button{
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* ----------------------------------------EVENT-FORM COMPONENT STYLES------------------------------- */
+.form-container {
+    /* background-color: green; */
+    margin: 2rem;
+}
+.form-container input{
+    display: block;
+    margin: 1rem auto;
+    width: 80%;
+    padding: 0.5rem 1.2rem;
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    border-radius: 0.3rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.form-container textarea{
+    display: block;
+    width: 80%;
+    margin: 1rem auto; 
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 1rem;
+    resize: none;
+    font-family: cursive;
+    font-weight: 300;
+
+}
+
+.add-event {
+    margin: 2rem auto;
+    width: fit-content;
+}
+
+/* ---------------------------------EVENT-iNFO COMPONENT STYLES----------------------- */
+.info-container {
+    margin: 1rem 3rem;
+    /* background-color: red; */
+}
+.info-item h1{
+    font-size: 1.8rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 1rem 0;
+    color: rgb(67, 121,157);
+
+}
+
+.info-item p{
+    font-size: 1.1rem;
+    font-family: cursive;
+    line-height: 1.6rem;
+    margin-bottom: 2rem;
+}
+/* .info-container p{
+    
+} */
+
+/* --------------------------------INFO-SLIDES COMPONENT STYLES----------------------------- */
+.info-slides-container{
+    /* width: 500px; */
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 40px -8px rgba(0,0,0,0.4);
+    overflow: hidden;
+    width: 500px;
+    /* height: 600px; */
+    text-align: center;
+
+}
+
+.info-slides-container .content{
+    /* background: #fff; */
+    max-width: fit-content;
+    padding-top: 24px;
+    overflow: hidden;
+
+}
+
+.info-slides-container .image img{
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+
+}
+
+.info-slides-container .steps{
+    display: flex;
+    /* background: orange; */
+    width: 100%;
+}
+
+.info-slides-container .step{
+    transition: all 1s ease;
+    
+}
+
+.info-slides-container .step h3{
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.info-slides-container .step p{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0.9rem 2rem;
+    line-height: 2rem;
+    /* background: green; */
+}
+
+.next-btn{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    background: rgb(67, 121,157);
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.dot0, .dot1, .dot2{
+    background: darkgrey;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+
+}
+
+.active {
+    background-color: rgb(67, 121,157);
+}
