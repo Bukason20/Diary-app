@@ -77,25 +77,7 @@ export const EventProvider = ({children}) => {
         }else {
             setSearchResults(events)
         }
-        // setFilterText(e.target.value)
-        // if(filterText === "") {
-            
-        //         setEvents(events)
-            
-        //     // console.log(events)
-        // }else if(filterText !== 0 ){
-        //     return (
-        //     setEvents(events.filter((event) => event.title.toLowerCase().includes(filterText.toLowerCase())))
-        //     // console.log(e.target.value)
-        //     )
-        // }
-        // // events.filter((event) => {
-        //     if(e.target.value === ""){
-        //         setEvents(events)
-        //     }else if(event.title.toLowerCase().includes(e.target.value.toLowerCase())){
-        //         setEvents(event)
-        //     }
-        // })
+        
     }
 
     return  <EventContext.Provider 
