@@ -7,6 +7,7 @@ import Button from "./Components/shared/Button";
 import { EventProvider } from "./Components/Context/EventContext";
 import EventInfo from "./Pages/EventInfo";
 import Slider from "./Components/Slider/Slider";
+import EventFilter from "./Components/EventFilter";
 
 const App = () => {
     
@@ -20,6 +21,7 @@ const App = () => {
                 <Route path = "/home">
                     <div className="app-container">
                         <Header />
+                        <EventFilter />
                         <EventList />
                         <div className="create-event">
                             <Link to = "/add-event"><Button type = "submit">Create Event</Button></Link>

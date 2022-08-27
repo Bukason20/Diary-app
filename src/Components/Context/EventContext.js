@@ -62,6 +62,42 @@ export const EventProvider = ({children}) => {
         }))
     }
 
+    const [filterText, setFilterText] = useState("");
+    const [searchResults, setSearchResults] =useState([]);
+
+    //filter event 
+    const filterEvent = (searchTerm) => {
+        setFilterText(searchTerm)
+        if (searchTerm !== ""){
+            const newEvent = events.filter((event) => {
+                return Object.values(event).join(" ").toLowerCase().includes(searchTerm.toLowerCase());
+            })
+
+            setSearchResults(newEvent)
+        }else {
+            setSearchResults(events)
+        }
+        // setFilterText(e.target.value)
+        // if(filterText === "") {
+            
+        //         setEvents(events)
+            
+        //     // console.log(events)
+        // }else if(filterText !== 0 ){
+        //     return (
+        //     setEvents(events.filter((event) => event.title.toLowerCase().includes(filterText.toLowerCase())))
+        //     // console.log(e.target.value)
+        //     )
+        // }
+        // // events.filter((event) => {
+        //     if(e.target.value === ""){
+        //         setEvents(events)
+        //     }else if(event.title.toLowerCase().includes(e.target.value.toLowerCase())){
+        //         setEvents(event)
+        //     }
+        // })
+    }
+
     return  <EventContext.Provider 
                 value = {{
                     events : events,
@@ -70,7 +106,10 @@ export const EventProvider = ({children}) => {
                     addEvent : addEvent,
                     editEvent : editEvent,
                     updateEvent: updateEvent,
-                    setEvents: setEvents
+                    setEvents: setEvents,
+                    filterEvent: filterEvent,
+                    filterText: filterText,
+                    searchResults: searchResults
                     
                 }}
             >
