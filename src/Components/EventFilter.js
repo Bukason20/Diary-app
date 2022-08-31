@@ -8,14 +8,14 @@ const EventFilter = () => {
 
     const { filterEvent, filterText } = useContext(EventContext)
 
-    const inputEl = useRef("")
+    // const inputEl = useRef("")
 
-    const changeText = () => {
-        filterEvent(inputEl.current.value)
-    }
+    // const changeText = (e) => {
+    //     filterEvent(e.target.value)
+    // }
     return (  
         <div className = "filter-container">
-            <input type="text"  placeholder = "Search Events" onChange = {changeText} value = {filterText} ref = {inputEl}/>
+            <input type="text"  placeholder = "Search Events" onKeyUp = {(e) => filterEvent(e.target.value)} defaultValue = {filterText}/>
             
         </div>
     );

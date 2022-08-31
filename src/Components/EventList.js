@@ -3,11 +3,21 @@ import { useContext} from "react"
 import EventContext from "./Context/EventContext";
 
 const EventList = () => {
-    const { events, filterText, searchResults} = useContext(EventContext)
+    const { events, filterText, searchResults, loading} = useContext(EventContext)
 
+    if(!loading && (!events || events.length === 0)){
+        return (
+            <p className = "no-event">No Events yet</p>
+        )
+    }
     
+    if(filterText.length >= 1 && searchResults.length === 0) {
+        return (
+            <p>No match</p>
+        )
+    }
 
-    return (  
+    return loading ? <h3>Loading...</h3> : (  
         <div>
             {
                 filterText.length < 1 ? events.map((event) => {

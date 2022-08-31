@@ -8,6 +8,7 @@ import { EventProvider } from "./Components/Context/EventContext";
 import EventInfo from "./Pages/EventInfo";
 import Slider from "./Components/Slider/Slider";
 import EventFilter from "./Components/EventFilter";
+import FirstPage from "./Components/FirstPage";
 
 const App = () => {
     
@@ -15,7 +16,7 @@ const App = () => {
         <EventProvider>
             <Router>
                 <Route exact path = "/">
-                    <Slider />
+                    <FirstPage />
                 </Route>
                 
                 <Route path = "/home">

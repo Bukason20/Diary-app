@@ -12,7 +12,7 @@ const EventItem = ({event}) => {
             <div className="item-container">
                 <div className="item-contents">
                     <h3>{event.title}</h3>
-                    <p>{event.body.slice(0, 65) + "..."}</p>
+                    <p>{event.body == null ? "" : event.body.slice(0, 65) + "..."}</p>
                     <Link to = {`/event/${event.id}`}><Button> Read More</Button></Link>
                 </div>
                 <div className="item-icons">

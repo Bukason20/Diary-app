@@ -14,8 +14,11 @@ const EventInfo = () => {
 
     const history = useHistory()
 
-    const delEvent = (id, title,) =>{
+    const delEvent = async (id, title,) =>{
         if(window.confirm(`Are you sure you want to delete "${title}"?`)){
+
+            await fetch(`http://localhost:5000/events/${id}`, {method : "DELETE"})
+            
             setEvents(events.filter((event) => id !== event.id));
             history.push("/home")
             

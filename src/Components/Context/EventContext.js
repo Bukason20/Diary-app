@@ -1,4 +1,4 @@
-import { createContext, useState} from "react";
+import { createContext, useEffect, useState} from "react";
 import { useHistory } from "react-router-dom";
 import { v4 as uuidv4} from "uuid"
 
@@ -6,32 +6,34 @@ const EventContext = createContext();
 
 export const EventProvider = ({children}) => {
    
-    const [events, setEvents] = useState([
-        {
-            id : 1,
-            title : "What my girl friend did to me",
-            body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae placeat suscipit officiis est, sit dicta! Optio sunt ad at incidunt, architecto odit fugit! Dolor vitae debitis in delectus cupiditate numquam!"
-        },
-        {
-            id : 2,
-            title : "What my mum did to me",
-            body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae placeat suscipit officiis est, sit dicta! Optio sunt ad at incidunt, architecto odit fugit! Dolor vitae debitis in delectus cupiditate numquam!"
-        },
-        {
-            id : 3,
-            title : "What my aunty did to me",
-            body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae placeat suscipit officiis est, sit dicta! Optio sunt ad at incidunt, architecto odit fugit! Dolor vitae debitis in delectus cupiditate numquam!"
-        }
-    ])
+    const [events, setEvents] = useState([]);
+
+    const [loading, setLoading] = useState(true)
 
     const [eventEdit, setEventEdit] = useState({
         event : {},
         edit: false,
     })
 
+    useEffect(() => {
+        fetchEvents()
+    }, [])
+
+    //Fetch Events
+    const fetchEvents = async () => {
+        const response = await fetch("http://localhost:5000/events?_sort=id&_order=desc")
+
+        const data = await response.json()
+
+        setEvents(data)
+        setLoading(false)
+    }
+
     // delete event
-    const deleteEvent = (id, title) =>{
+    const deleteEvent = async (id, title) =>{
         if(window.confirm(`Are you sure you want to delete "${title}"?`)){
+
+            await fetch(`http://localhost:5000/events/${id}`, {method : "DELETE"})
             setEvents(events.filter((event) => id !== event.id))
         }
        
@@ -40,9 +42,21 @@ export const EventProvider = ({children}) => {
     
 
     // add event
-    const addEvent = (newEvent) => {
+    const addEvent = async (newEvent) => {
+
+        const response = await fetch(`http://localhost:5000/events`, {
+            method : "POST",
+            headers : {"Content-Type" : "application/json"},
+            body : JSON.stringify(newEvent)
+        })
+
+        const data = await response.json()
+        
         newEvent.id = uuidv4();
-       setEvents([newEvent, ...events]) 
+       setEvents([data, ...events]) 
+
+       setFilterText("")
+       filterEvent(filterText)
     }
 
     // edit event
@@ -54,10 +68,20 @@ export const EventProvider = ({children}) => {
     }
 
     //update event
-    const updateEvent = (id, updatedEvent) => {
+    const updateEvent = async (id, updatedEvent) => {
+
+        const response = await fetch(`http://localhost:5000/events/${id}`, {
+
+            method : "PUT",
+            headers : {"Content-Type" : "application/json"},
+            body : JSON.stringify(updatedEvent)
+        })
+
+        const data = await response.json()
+
         setEvents(events.map((event) => {
             return(
-                event.id === id ? {...event, ...updatedEvent} : event
+                event.id === id ? {...event, ...data} : event
             )
         }))
     }
@@ -74,7 +98,13 @@ export const EventProvider = ({children}) => {
             })
 
             setSearchResults(newEvent)
-        }else {
+        }
+        // else if(Object.values(event).join(" ").toLowerCase().indexOf(searchTerm.toLowerCase()) === -1){
+        //     return (
+        //         <p>No results found</p>
+        //     )
+        // }
+        else{
             setSearchResults(events)
         }
         
@@ -84,14 +114,16 @@ export const EventProvider = ({children}) => {
                 value = {{
                     events : events,
                     eventEdit : eventEdit,
+                    filterText: filterText,
+                    searchResults: searchResults,
+                    loading : loading,
                     deleteEvent: deleteEvent,
                     addEvent : addEvent,
                     editEvent : editEvent,
                     updateEvent: updateEvent,
                     setEvents: setEvents,
                     filterEvent: filterEvent,
-                    filterText: filterText,
-                    searchResults: searchResults
+                   
                     
                 }}
             >
