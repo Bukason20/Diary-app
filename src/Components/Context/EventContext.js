@@ -10,6 +10,8 @@ export const EventProvider = ({children}) => {
 
     const [loading, setLoading] = useState(true)
 
+    const [textTime, setTextTime] = useState("Created")
+
     const [eventEdit, setEventEdit] = useState({
         event : {},
         edit: false,
@@ -18,6 +20,8 @@ export const EventProvider = ({children}) => {
     useEffect(() => {
         fetchEvents()
     }, [])
+
+
 
     //Fetch Events
     const fetchEvents = async () => {
@@ -52,7 +56,6 @@ export const EventProvider = ({children}) => {
 
         const data = await response.json()
         
-        newEvent.id = uuidv4();
        setEvents([data, ...events]) 
 
        setFilterText("")
@@ -65,6 +68,9 @@ export const EventProvider = ({children}) => {
             event : event,
             edit: true
         })
+        if(eventEdit.edit){
+            setTextTime("Edited")
+        }
     }
 
     //update event
@@ -123,6 +129,7 @@ export const EventProvider = ({children}) => {
                     updateEvent: updateEvent,
                     setEvents: setEvents,
                     filterEvent: filterEvent,
+                    textTime : textTime
                    
                     
                 }}

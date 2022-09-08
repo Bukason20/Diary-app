@@ -9,24 +9,24 @@ const dataSlider = [
         id : 1,
         img : IMG1,
         title: "Welcome to Diary App",
-        body : "The best e-diaty app."
+        body : "The best electronic diary app."
     },
     {
         id : 2,
         img : IMG2,
-        title: "Step 2",
-        body : "With Diary app, you can create a story for your events."
+        title: "Track with days",
+        body : "With Diary app, you can create and track your events with time."
     },
     {
         id : 3,
         img : IMG3,
-        title: "Write without a pen",
-        body : "With Diary App, you can write at your comfort."
+        title: "Memory Warehouse",
+        body : "With Diary App, you  write and also read your memorable events at your comfort."
     },
     {
         id : 4,
         img : IMG4,
-        title: "Read your life",
+        title: "Write at your ",
         body : "Diary app helps you store your memories."
     },
 ]

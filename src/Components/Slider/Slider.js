@@ -39,7 +39,8 @@ const Slider = () => {
     }
     // console.log(Array.from({length: 4}))
 
-    return (  
+    return (
+          
         <div className = "container-slider">
             {
                 dataSlider.map((obj, index) => {

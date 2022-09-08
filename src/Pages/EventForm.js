@@ -8,8 +8,9 @@ const EventForm = () => {
     const { addEvent, eventEdit, updateEvent } = useContext(EventContext)
 
     const [title, setTitle] = useState("")
-    const [body, setBody] = useState("")
-
+    const [body, setBody] = useState("");
+    const [created, setCreated] = useState(`${new Date().toDateString()}`)
+    const [category, setCategory] = useState("")
     const handleTitleChange = (e) => {
         setTitle(e.target.value)
     }
@@ -22,13 +23,19 @@ const EventForm = () => {
         if(eventEdit.edit === true){
             setTitle(eventEdit.event.title);
             setBody(eventEdit.event.body)
+            setCategory(eventEdit.event.category)
         }
     }, [eventEdit])
 
     const handleSubmit = (e) =>{
+
+        
+        
         const newEvent = {
             title : title,
-            body : body
+            body : body,
+            created : created,
+            category : category,
         }
 
         if(eventEdit.edit === true) {
@@ -69,10 +76,27 @@ const EventForm = () => {
                     <input type="text" placeholder = "Event Title" onChange = {handleTitleChange} value = {title} required/>
                 </div>
 
+                <div className = "event-type">
+                    <select name="category"  value = {category} onChange = {(e) => setCategory(e.target.value)}>
+                        <option value = "" defaultValue >Choose Type of diary</option>
+                        <option value="Travel">Travel Diary</option>
+                        <option value="Reflective">Reflective Diary</option>
+                        <option value="Gratitude">Gratitude Diary</option>
+                        <option value="Dream">Dream Diary</option>
+                        <option value="Work">Work Diary</option>
+                        <option value="Creative-writing">Creative Writing Diary</option>
+                        <option value="Food">Food Diary</option>
+                        <option value="Academic">Academic Diary</option>
+                        <option value="Fitness">Fitness Diary</option>
+                        <option value="Secret">Secret Diary</option>
+                    </select>
+                    
+                </div>
+
                 <textarea name="" id="" cols="30" rows="10" placeholder = "Write your stories" onChange = {handleBodyChange} value = {body}></textarea>
 
                 <div className="add-event">
-                    <Button type = "submit" >Add Event</Button>
+                    <Button type = "submit" >{eventEdit.edit ? "Update Event" : "Add Event"}</Button>
                 </div>
                
             </form>
