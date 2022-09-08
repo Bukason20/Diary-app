@@ -1,5 +1,9 @@
 # Getting Started with Create React App
 
+This app was built to make me understand about the Create, Read, Update and Delete(CRUD) functionalities.
+
+use "npm run dev" to start the project with the mock backend
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
